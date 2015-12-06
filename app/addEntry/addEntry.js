@@ -30,16 +30,23 @@ app.controller('addEntryCtrl', [
       'startups': {},
     };
 
+    // if you change the 'pre-populate form field' above, you must also update this object
+    var objectLength = {
+      startup: 4,
+      founder: 3,
+    };
+
     // startup form fields will display by default, founder fields will not
     $scope.entry = {
       startup: true,
       founder: false,
     };
 
-    // if you change the 'pre-populate form fields' above, you must also update this object
-    var objectLength = {
-      startup: 4,
-      founder: 3,
+    // this handles the ability to add multiple founders to the same startup (at the same time)
+    $scope.founderCount = [];
+    $scope.addFounder = function() {
+      this.length = $scope.founderCount.length;
+      $scope.founderCount.push(this.length)
     };
 
     // modal 'cancel' button
@@ -108,7 +115,6 @@ app.controller('addEntryCtrl', [
         } else {
           return;
         }
-
         return;
       },
 

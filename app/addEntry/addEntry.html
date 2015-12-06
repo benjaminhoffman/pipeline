@@ -11,7 +11,7 @@
       <label for="type" class="col-sm-3 control-label"></label>
       <div class="col-sm-9 btn-group">
         <label class="btn btn-primary" ng-model="entry.startup" uib-btn-checkbox>Startup</label>
-        <label class="btn btn-primary" ng-model="entry.founder" uib-btn-checkbox>Founder</label>
+        <label class="btn btn-primary" ng-model="entry.founder" ng-click="founderCount[0] = 0" uib-btn-checkbox>Founder</label>
       </div>
     </div>
 
@@ -130,6 +130,7 @@
       </div>
     </div>
 
+
     <!-- Start Founder Form -->
 
     <hr ng-show="entry.founder">
@@ -143,27 +144,36 @@
       </div>
     </div>
 
+    <div data-ng-repeat="founder in founderCount">
 
-    <!-- Founder Name -->
+      <!-- Founder Name -->
+      <div class="form-group" ng-show="entry.founder">
+        <label for="founder-name" class="col-sm-3 control-label">Founder Name *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" ng-model="founder.name" placeholder="What is the founder's name?" />
+        </div>
+      </div>
+
+      <!-- Founder Email & Phone -->
+      <div class="form-inline" ng-show="entry.founder">
+        <label for="founder-contact" class="col-sm-3 control-label">Email & Phone</label>
+        
+        <div class="col-sm-4">
+          <input type="email" class="form-control" ng-model="founder.email" placeholder="Email Address" />
+        </div>
+        
+        <div class="col-sm-4">
+          <input type="tel" class="form-control" ng-model="founder.phone" placeholder="Phone Number" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Add new founder fields -->
     <div class="form-group" ng-show="entry.founder">
-      <label for="founder-name" class="col-sm-3 control-label">Founder Name *</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" ng-model="founder.name" placeholder="What is the founder's name?" />
-      </div>
+      <button class="btn btn-primary" value="+ 1" ng-click="addFounder()"> </button>
     </div>
 
-    <!-- Founder Email & Phone -->
-    <div class="form-inline" ng-show="entry.founder">
-      <label for="founder-email" class="col-md-3">Email & Phone</label>
-      <div class="col-md-4">
-        <input type="email" class="form-control" ng-model="founder.email" placeholder="Email Address" />
-      </div>
 
-      <label for="founder-phone" class="sr-only">Founder Phone</label>
-      <div class="col-md-4">
-        <input type="tel" class="form-control" ng-model="founder.phone" placeholder="Phone Number" />
-      </div>
-    </div>
 
     <!-- Founder Phone -->
     <!-- <div class="form-inline" ng-show="entry.founder">
